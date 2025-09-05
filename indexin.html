@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فهرس مكتبات جامعة صنعاء الموحد</title>
+    
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            direction: rtl; /* Arabic support */
+            text-align: right; /* Arabic support */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .main-header {
+            background-color: #004d40; /* Dark teal */
+            color: #fff;
+            padding: 10px 0;
+            border-bottom: 5px solid #ffab00; /* Amber accent */
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .main-header .logo img {
+            height: 50px;
+            margin-left: 15px; /* Margin for Arabic layout */
+        }
+
+        .main-header .logo h1 {
+            margin: 0;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .main-nav ul li {
+            margin-right: 20px; /* Margin for Arabic layout */
+        }
+
+        .main-nav ul li:last-child {
+            margin-right: 0;
+        }
+
+        .main-nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav ul li a:hover {
+            color: #ffab00;
+        }
+
+        /* Hero Section (Home Page) */
+        .hero-section {
+            background-color: #e0f2f1; /* Light teal */
+            padding: 60px 0;
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .hero-section h2 {
+            color: #004d40;
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .hero-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .quick-search {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .quick-search input[type="text"] {
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 400px;
+            max-width: 80%;
+            font-size: 16px;
+            text-align: right; /* Arabic support */
+        }
+
+        /* Content Sections (Forms, Results) */
+        .content-wrapper {
+            padding: 20px 0; /* Adjust padding for the wrapper */
+        }
+
+        .content-section {
+            padding: 40px 0;
+            display: none; /* Hide all sections by default */
+        }
+
+        .content-section.active {
+            display: block; /* Show active section */
+        }
+
+        h2 {
+            color: #004d40;
+            margin-bottom: 30px;
+            font-size: 28px;
+            text-align: right;
+        }
+
+        /* Forms Styling */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #004d40;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group input[type="file"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box; /* Include padding in width */
+            font-size: 16px;
+            text-align: right; /* Arabic support */
+        }
+
+        .form-group textarea {
+            resize: vertical; /* Allow vertical resizing */
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background-color: #004d40;
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #00332f;
+        }
+
+        .btn-secondary {
+            background-color: #ffab00; /* Amber */
+            color: #333;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #fb8c00;
+        }
+
+        /* Search Results Styling (Placeholder) */
+        .search-results {
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .search-results h3 {
+            color: #004d40;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .book-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .book-item img {
+            width: 100px;
+            height: 150px;
+            object-fit: cover;
+            margin-left: 15px; /* Adjust for Arabic layout */
+            border-radius: 4px;
+        }
+
+        .book-details {
+            flex-grow: 1;
+        }
+
+        .book-details h4 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: #004d40;
+            font-size: 20px;
+        }
+
+        .book-details p {
+            margin-bottom: 5px;
+            font-size: 15px;
+        }
+
+        .book-actions {
+            margin-right: 20px; /* Adjust for Arabic layout */
+        }
+
+        .book-actions button {
+            background-color: #00796b; /* Darker teal */
+            color: #fff;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block; /* Stack buttons vertically */
+            transition: background-color 0.3s ease;
+        }
+
+        .book-actions button:hover {
+            background-color: #00564d;
+        }
+
+        /* Upload Reference Section */
+        .upload-reference-section {
+            background-color: #f0f4c3; /* Light yellow green */
+            padding: 25px;
+            margin-top: 40px;
+            border-radius: 8px;
+            border: 1px dashed #c0ca33;
+            text-align: center;
+        }
+        .upload-reference-section h3 {
+            color: #689f38; /* Darker green */
+        }
+        .upload-reference-section p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: #333;
+            color: #ff0;
+            text-align: center;
+            padding: 1px 0;
+            font-size: 14px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <div style="display: grid; grid-template-columns: 0% %;">
+                <div style="grid-row:; padding: 15px;">
+                <h1>فهرس مكتبات جامعة صنعاء الموحد</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#" data-section="home">الشاشة الرئيسية</a></li>
+                    <li><a href="#" data-section="search">البحث المتقدم</a></li>
+                    <li><a href="#" data-section="add-book">إضافة كتب جديدة</a></li>
+                    <li><a href="#" data-section="manage-catalogs">إدارة الفهارس</a></li>
+                    <li><a href="#" data-section="reports">التقارير والإحصائيات</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content-wrapper">
+        <section id="home-section" class="content-section active">
+            <div class="container">
+                <div class="hero-section">
+                    <h2>مرحباً بكم في فهرس مكتبات جامعة صنعاء</h2>
+                    <p>ابحث عن الكتب والمراجع في جميع مكتبات الجامعة.</p>
+                    <div class="quick-search">
+                        <input type="text" placeholder="ابحث عن كتاب، مؤلف، أو موضوع...">
+                        <button>بحث</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="search-section" class="content-section hidden">
+            <div class="container">
+                <h2>البحث المتقدم عن الكتب</h2>
+                <form class="search-form" id="advancedSearchForm">
+                    <div class="form-group">
+                        <label for="searchText">نص البحث:</label>
+                        <input type="text" id="searchText" name="searchText" placeholder="العنوان، المؤلف، الكلمات المفتاحية...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="author">المؤلف:</label>
+                        <input type="text" id="author" name="author" placeholder="اسم المؤلف">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="genre">النوع:</label>
+                        <select id="genre" name="genre">
+                            <option value="">جميع الأنواع</option>
+                            <option value="science">علمي</option>
+                            <option value="literature">أدب</option>
+                            <option value="history">تاريخ</option>
+                            <option value="engineering">هندسة</option>
+                            <option value="law">قانون</option>
+                            </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="publicationYear">سنة النشر:</label>
+                        <input type="number" id="publicationYear" name="publicationYear" min="1900" max="2025" placeholder="مثال: 2020">
+                    </div>
+
+                    <button type="submit" class="btn-primary">بحث</button>
+                </form>
+
+                <div class="search-results" id="searchResults">
+                    <h3>نتائج البحث:</h3>
+                    <p>لا توجد نتائج لعرضها حالياً. يرجى إجراء بحث.</p>
+                </div>
+
+                <div class="upload-reference-section">
+                    <h3>هل لديك مراجع تود إضافتها؟</h3>
+                    <p>ساهم في إثراء الفهرس برفع كتب أو مراجع بصيغة PDF.</p>
+                    <button class="btn-secondary" data-section="upload-reference">رفع مرجع جديد</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="add-book-section" class="content-section hidden">
+            <div class="container">
+                <h2>إضافة كتاب جديد إلى الفهرس</h2>
+                <form class="add-book-form" id="addBookForm">
+                    <div class="form-group">
+                        <label for="bookTitle">عنوان الكتاب:</label>
+                        <input type="text" id="bookTitle" name="bookTitle" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bookAuthor">المؤلف:</label>
+                        <input type="text" id="bookAuthor" name="bookAuthor" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bookGenre">النوع:</label>
+                        <input type="text" id="bookGenre" name="bookGenre" placeholder="مثال: علم النفس، رواية، تاريخ">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bookYear">سنة النشر:</label>
+                        <input type="number" id="bookYear" name="bookYear" min="1900" max="2025">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bookISBN">الرقم الدولي ISBN:</label>
+                        <input type="text" id="bookISBN" name="bookISBN" placeholder="مثال: 978-3-16-148410-0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bookSummary">الملخص:</label>
+                        <textarea id="bookSummary" name="bookSummary" rows="5"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="coverImage">صورة الغلاف:</label>
+                        <input type="file" id="coverImage" name="coverImage" accept="image/*">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="libraryLocation">موقع الكتاب (المكتبة):</label>
+                        <input type="text" id="libraryLocation" name="libraryLocation" placeholder="مثال: مكتبة كلية الطب">
+                    </div>
+
+                    <button type="submit" class="btn-primary">إضافة الكتاب</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="manage-catalogs-section" class="content-section hidden">
+            <div class="container">
+                <h2>إدارة الفهارس</h2>
+                <p>هذا القسم سيحتوي على واجهة لتعديل وحذف وتنظيم الكتب.</p>
+                </div>
+        </section>
+
+        <section id="reports-section" class="content-section hidden">
+            <div class="container">
+                <h2>التقارير والإحصائيات</h2>
+                <p>هذا القسم سيعرض إحصائيات حول الكتب الأكثر طلباً، عدد الكتب، إلخ.</p>
+                </div>
+        </section>
+
+        <section id="upload-reference-section" class="content-section hidden">
+            <div class="container">
+                <h2>رفع مرجع جديد (PDF)</h2>
+                <p>يرجى ملء المعلومات التالية لرفع مرجعك، وسيتم مراجعته قبل إضافته للفهرس.</p>
+                <form class="upload-form" id="uploadReferenceForm">
+                    <div class="form-group">
+                        <label for="uploadedBookTitle">عنوان المرجع المقترح:</label>
+                        <input type="text" id="uploadedBookTitle" name="uploadedBookTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="uploadedBookAuthor">مؤلف المرجع المقترح:</label>
+                        <input type="text" id="uploadedBookAuthor" name="uploadedBookAuthor">
+                    </div>
+                    <div class="form-group">
+                        <label for="pdfFile">ملف PDF:</label>
+                        <input type="file" id="pdfFile" name="pdfFile" accept=".pdf" required>
+                    </div>
+                    <button type="submit" class="btn-primary">رفع المرجع</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+             <p style="color:#0f9e1f">جميع الحقوق محفوظة لدى</p>
+          <p>@ عبدالله مشورة <br> @ هيثم الاحمر <br> @ 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.main-nav ul li a');
+            const contentSections = document.querySelectorAll('.content-section');
+            const uploadReferenceButton = document.querySelector('button[data-section="upload-reference"]');
+
+            // دالة لإخفاء جميع الأقسام وإظهار القسم المطلوب
+            const showSection = (sectionId) => {
+                contentSections.forEach(section => {
+                    section.classList.add('hidden'); // إخفاء جميع الأقسام
+                    section.classList.remove('active'); // إزالة فئة النشاط
+                });
+                const targetSection = document.getElementById(sectionId);
+                if (targetSection) {
+                    targetSection.classList.remove('hidden'); // إظهار القسم المطلوب
+                    targetSection.classList.add('active'); // إضافة فئة النشاط
+                }
+            };
+
+            // معالج حدث النقر على روابط القائمة الرئيسية
+            navLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault(); // منع الانتقال الافتراضي للصفحة
+                    const targetSectionId = event.target.dataset.section + '-section'; // الحصول على ID القسم من data-section
+                    showSection(targetSectionId);
+                });
+            });
+
+            // معالج حدث النقر على زر "رفع مرجع جديد" في قسم البحث
+            if (uploadReferenceButton) {
+                uploadReferenceButton.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const targetSectionId = event.target.dataset.section + '-section';
+                    showSection(targetSectionId);
+                });
+            }
+
+            // عرض القسم الرئيسي عند تحميل الصفحة لأول مرة
+            showSection('home-section');
+
+            // ******************************************************
+            // أمثلة بسيطة للتفاعل مع النماذج (تحتاج لتطوير لاحقاً)
+            // ******************************************************
+
+            // معالج حدث لنموذج البحث المتقدم
+            const advancedSearchForm = document.getElementById('advancedSearchForm');
+            if (advancedSearchForm) {
+                advancedSearchForm.addEventListener('submit', (event) => {
+                    event.preventDefault(); // منع الإرسال الافتراضي للنموذج
+                    const searchText = document.getElementById('searchText').value;
+                    const author = document.getElementById('author').value;
+                    const genre = document.getElementById('genre').value;
+                    const publicationYear = document.getElementById('publicationYear').value;
+
+                    console.log('بيانات البحث:', { searchText, author, genre, publicationYear });
+                    alert('تم إرسال بيانات البحث بنجاح (راجع الـ Console). سيتم عرض النتائج هنا لاحقاً.');
+                    // هنا سيتم استدعاء API الواجهة الخلفية لإجراء البحث وعرض النتائج
+                    // مثال على عرض وهمي لنتائج البحث (يمكنك حذف هذا لاحقاً)
+                    const searchResultsDiv = document.getElementById('searchResults');
+                    searchResultsDiv.innerHTML = `
+                        <h3>نتائج البحث عن "${searchText}":</h3>
+                        <div class="book-item">
+                            <img src="https://via.placeholder.com/100x150?text=غلاف+كتاب" alt="غلاف كتاب">
+                            <div class="book-details">
+                                <h4>عنوان الكتاب الأول</h4>
+                                <p><strong>المؤلف:</strong> اسم المؤلف الأول</p>
+                                <p><strong>السنة:</strong> 2023</p>
+                                <p><strong>الموقع:</strong> مكتبة كلية الهندسة</p>
+                            </div>
+                            <div class="book-actions">
+                                <button>عرض التفاصيل</button>
+                                <button>إضافة للمفضلة</button>
+                                <button>طلب الكتاب</button>
+                            </div>
+                        </div>
+                        <div class="book-item">
+                            <img src="https://via.placeholder.com/100x150?text=غلاف+كتاب" alt="غلاف كتاب">
+                            <div class="book-details">
+                                <h4>عنوان الكتاب الثاني</h4>
+                                <p><strong>المؤلف:</strong> اسم المؤلف الثاني</p>
+                                <p><strong>السنة:</strong> 2020</p>
+                                <p><strong>الموقع:</strong> المكتبة المركزية</p>
+                            </div>
+                            <div class="book-actions">
+                                <button>عرض التفاصيل</button>
+                                <button>إضافة للمفضلة</button>
+                                <button>طلب الكتاب</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            // معالج حدث لنموذج إضافة كتاب جديد
+            const addBookForm = document.getElementById('addBookForm');
+            if (addBookForm) {
+                addBookForm.addEventListener('submit', (event) => {
+                    event.preventDefault(); // منع الإرسال الافتراضي للنموذج
+                    const bookTitle = document.getElementById('bookTitle').value;
+                    const bookAuthor = document.getElementById('bookAuthor').value;
+                    // يمكنك جمع باقي البيانات هنا
+
+                    console.log('بيانات الكتاب الجديد:', { bookTitle, bookAuthor });
+                    alert(`تم إرسال بيانات الكتاب "${bookTitle}" بنجاح (راجع الـ Console). سيتم حفظه لاحقاً.`);
+                    addBookForm.reset(); // تفريغ النموذج بعد الإرسال
+                    // هنا سيتم استدعاء API الواجهة الخلفية لحفظ بيانات الكتاب
+                });
+            }
+
+            // معالج حدث لنموذج رفع مرجع جديد
+            const uploadReferenceForm = document.getElementById('uploadReferenceForm');
+            if (uploadReferenceForm) {
+                uploadReferenceForm.addEventListener('submit', (event) => {
+                    event.preventDefault(); // منع الإرسال الافتراضي للنموذج
+                    const uploadedBookTitle = document.getElementById('uploadedBookTitle').value;
+                    const pdfFile = document.getElementById('pdfFile').files[0];
+
+                    console.log('بيانات المرجع المرفوع:', { uploadedBookTitle, pdfFile: pdfFile ? pdfFile.name : 'لا يوجد ملف' });
+                    alert(`تم إرسال طلب رفع المرجع "${uploadedBookTitle}" بنجاح (راجع الـ Console).`);
+                    uploadReferenceForm.reset(); // تفريغ النموذج بعد الإرسال
+                    // هنا سيتم استدعاء API الواجهة الخلفية لرفع الملف وحفظ بياناته
+                });
+            }
+        });
+    </script>
+</body>
+</html>
